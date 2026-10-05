@@ -1,0 +1,56 @@
+Loading weights:   0%|          | 0/192 [00:00<?, ?it/s]Loading weights: 100%|██████████| 192/192 [00:00<00:00, 2127.29it/s]
+[transformers] The tied weights mapping and config for this model specifies to tie shared.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning.
+{"t": "15:30:42", "lvl": "INFO", "name": "esd", "msg": "generate", "model": "flan_t5_small", "todo": 1800, "done": 0}
+{"t": "15:30:57", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "code", "n": 16, "of": 1800, "s_per_ex": 0.95}
+{"t": "15:31:06", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "code", "n": 32, "of": 1800, "s_per_ex": 0.52}
+{"t": "15:31:14", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "code", "n": 48, "of": 1800, "s_per_ex": 0.5}
+{"t": "15:31:19", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "code", "n": 64, "of": 1800, "s_per_ex": 0.35}
+{"t": "15:31:27", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "code", "n": 80, "of": 1800, "s_per_ex": 0.49}
+{"t": "15:31:37", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "code", "n": 96, "of": 1800, "s_per_ex": 0.63}
+{"t": "15:31:50", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "code", "n": 112, "of": 1800, "s_per_ex": 0.77}
+{"t": "15:32:03", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "code", "n": 128, "of": 1800, "s_per_ex": 0.81}
+{"t": "15:32:14", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "code", "n": 144, "of": 1800, "s_per_ex": 0.73}
+{"t": "15:32:21", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "code", "n": 160, "of": 1800, "s_per_ex": 0.42}
+{"t": "15:32:31", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "code", "n": 176, "of": 1800, "s_per_ex": 0.58}
+{"t": "15:32:42", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "code", "n": 192, "of": 1800, "s_per_ex": 0.72}
+{"t": "15:32:54", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "code", "n": 208, "of": 1800, "s_per_ex": 0.73}
+{"t": "15:33:07", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "code", "n": 224, "of": 1800, "s_per_ex": 0.84}
+{"t": "15:33:43", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "code", "n": 240, "of": 1800, "s_per_ex": 2.24}
+{"t": "15:34:11", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "code", "n": 256, "of": 1800, "s_per_ex": 1.7}
+{"t": "15:34:56", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "code", "n": 272, "of": 1800, "s_per_ex": 2.84}
+{"t": "15:36:17", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "code", "n": 288, "of": 1800, "s_per_ex": 5.08}
+{"t": "15:36:39", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "code", "n": 300, "of": 1800, "s_per_ex": 1.78}
+{"t": "15:36:48", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "factual_qa", "n": 316, "of": 1800, "s_per_ex": 0.57}
+{"t": "15:37:12", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "factual_qa", "n": 332, "of": 1800, "s_per_ex": 1.48}
+{"t": "15:37:40", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "factual_qa", "n": 348, "of": 1800, "s_per_ex": 1.77}
+{"t": "15:37:58", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "factual_qa", "n": 364, "of": 1800, "s_per_ex": 1.13}
+{"t": "15:38:15", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "factual_qa", "n": 380, "of": 1800, "s_per_ex": 1.06}
+{"t": "15:38:26", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "factual_qa", "n": 396, "of": 1800, "s_per_ex": 0.69}
+{"t": "15:38:39", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "factual_qa", "n": 412, "of": 1800, "s_per_ex": 0.79}
+{"t": "15:38:51", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "factual_qa", "n": 428, "of": 1800, "s_per_ex": 0.73}
+{"t": "15:39:01", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "factual_qa", "n": 444, "of": 1800, "s_per_ex": 0.66}
+{"t": "15:39:11", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "factual_qa", "n": 460, "of": 1800, "s_per_ex": 0.62}
+{"t": "15:39:22", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "factual_qa", "n": 476, "of": 1800, "s_per_ex": 0.65}
+{"t": "15:39:41", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "factual_qa", "n": 492, "of": 1800, "s_per_ex": 1.22}
+{"t": "15:39:59", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "factual_qa", "n": 508, "of": 1800, "s_per_ex": 1.09}
+{"t": "15:40:08", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "factual_qa", "n": 524, "of": 1800, "s_per_ex": 0.61}
+{"t": "15:40:33", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "factual_qa", "n": 540, "of": 1800, "s_per_ex": 1.54}
+{"t": "15:40:46", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "factual_qa", "n": 556, "of": 1800, "s_per_ex": 0.84}
+{"t": "15:40:57", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "factual_qa", "n": 572, "of": 1800, "s_per_ex": 0.65}
+{"t": "15:42:04", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "factual_qa", "n": 588, "of": 1800, "s_per_ex": 4.2}
+{"t": "15:42:13", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "factual_qa", "n": 600, "of": 1800, "s_per_ex": 0.74}
+{"t": "15:45:16", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "instruction", "n": 616, "of": 1800, "s_per_ex": 11.44}
+{"t": "15:46:14", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "instruction", "n": 632, "of": 1800, "s_per_ex": 3.6}
+{"t": "15:47:08", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "instruction", "n": 648, "of": 1800, "s_per_ex": 3.39}
+{"t": "15:48:43", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "instruction", "n": 664, "of": 1800, "s_per_ex": 5.92}
+{"t": "15:49:25", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "instruction", "n": 680, "of": 1800, "s_per_ex": 2.64}
+{"t": "15:50:19", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "instruction", "n": 696, "of": 1800, "s_per_ex": 3.35}
+{"t": "15:51:17", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "instruction", "n": 712, "of": 1800, "s_per_ex": 3.67}
+{"t": "15:52:13", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "instruction", "n": 728, "of": 1800, "s_per_ex": 3.47}
+{"t": "15:54:24", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "instruction", "n": 744, "of": 1800, "s_per_ex": 8.21}
+{"t": "15:57:41", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "instruction", "n": 760, "of": 1800, "s_per_ex": 12.27}
+{"t": "16:01:20", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "instruction", "n": 776, "of": 1800, "s_per_ex": 13.72}
+{"t": "16:02:44", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "instruction", "n": 792, "of": 1800, "s_per_ex": 5.24}
+{"t": "16:03:36", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "instruction", "n": 808, "of": 1800, "s_per_ex": 3.25}
+{"t": "16:04:32", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "instruction", "n": 824, "of": 1800, "s_per_ex": 3.51}
+{"t": "16:05:29", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_small", "task": "instruction", "n": 840, "of": 1800, "s_per_ex": 3.57}

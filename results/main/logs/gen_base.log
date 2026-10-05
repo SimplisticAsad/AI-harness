@@ -1,0 +1,27 @@
+Loading weights:   0%|          | 0/284 [00:00<?, ?it/s]Loading weights:  48%|████▊     | 136/284 [00:00<00:00, 1359.52it/s]Loading weights: 100%|██████████| 284/284 [00:00<00:00, 2178.06it/s]
+[transformers] The tied weights mapping and config for this model specifies to tie shared.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning.
+{"t": "15:30:42", "lvl": "INFO", "name": "esd", "msg": "generate", "model": "flan_t5_base", "todo": 1800, "done": 0}
+{"t": "15:31:23", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "code", "n": 16, "of": 1800, "s_per_ex": 2.26}
+{"t": "15:32:06", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "code", "n": 32, "of": 1800, "s_per_ex": 2.31}
+{"t": "15:32:36", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "code", "n": 48, "of": 1800, "s_per_ex": 1.46}
+{"t": "15:33:20", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "code", "n": 64, "of": 1800, "s_per_ex": 2.39}
+{"t": "15:35:06", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "code", "n": 80, "of": 1800, "s_per_ex": 6.15}
+{"t": "15:38:14", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "code", "n": 96, "of": 1800, "s_per_ex": 11.34}
+{"t": "15:40:02", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "code", "n": 112, "of": 1800, "s_per_ex": 6.33}
+{"t": "15:42:06", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "code", "n": 128, "of": 1800, "s_per_ex": 7.4}
+{"t": "15:44:49", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "code", "n": 144, "of": 1800, "s_per_ex": 9.75}
+{"t": "15:46:00", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "code", "n": 160, "of": 1800, "s_per_ex": 4.11}
+{"t": "15:46:55", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "code", "n": 176, "of": 1800, "s_per_ex": 3.0}
+{"t": "15:48:34", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "code", "n": 192, "of": 1800, "s_per_ex": 5.79}
+Loading weights:   0%|          | 0/284 [00:00<?, ?it/s]Loading weights: 100%|██████████| 284/284 [00:00<00:00, 6156.94it/s]
+[transformers] The tied weights mapping and config for this model specifies to tie shared.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning.
+{"t": "15:49:18", "lvl": "INFO", "name": "esd", "msg": "generate", "model": "flan_t5_base", "todo": 1008, "done": 192}
+{"t": "15:49:37", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "code", "n": 8, "of": 1008, "s_per_ex": 1.99}
+{"t": "15:50:51", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "factual_qa", "n": 24, "of": 1008, "s_per_ex": 4.65}
+{"t": "15:51:55", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "factual_qa", "n": 40, "of": 1008, "s_per_ex": 3.99}
+{"t": "15:54:00", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "factual_qa", "n": 56, "of": 1008, "s_per_ex": 7.83}
+{"t": "15:57:31", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "factual_qa", "n": 72, "of": 1008, "s_per_ex": 13.21}
+{"t": "16:01:45", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "factual_qa", "n": 88, "of": 1008, "s_per_ex": 15.83}
+{"t": "16:03:07", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "factual_qa", "n": 104, "of": 1008, "s_per_ex": 5.15}
+{"t": "16:04:24", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "factual_qa", "n": 120, "of": 1008, "s_per_ex": 4.78}
+{"t": "16:05:26", "lvl": "INFO", "name": "esd", "msg": "progress", "model": "flan_t5_base", "task": "factual_qa", "n": 136, "of": 1008, "s_per_ex": 3.9}
