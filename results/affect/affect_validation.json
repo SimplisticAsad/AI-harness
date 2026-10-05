@@ -1,0 +1,62 @@
+{
+ "goemotions_validation": {
+  "ekman_dev_macro_f1": 0.46385171123672714,
+  "ekman_test_macro_f1": 0.4720978128780403,
+  "ekman_C": 0.003,
+  "ekman_n_test": 4968,
+  "sent_dev_macro_f1": 0.6110957741943204,
+  "sent_test_macro_f1": 0.6236712896836363,
+  "sent_C": 0.003,
+  "sent_n_test": 4968
+ },
+ "negation_probes": [
+  {
+   "text": "I am happy.",
+   "lexicon_compound": 0.5719,
+   "contextual_valence": 0.9730529966764152,
+   "contextual_nonneutral": 0.9851710041984916
+  },
+  {
+   "text": "I am not happy.",
+   "lexicon_compound": -0.4585,
+   "contextual_valence": -0.972519610542804,
+   "contextual_nonneutral": 0.9976350837387145
+  },
+  {
+   "text": "This is a terrible solution.",
+   "lexicon_compound": -0.2023,
+   "contextual_valence": -0.6512770410627127,
+   "contextual_nonneutral": 0.8825435936450958
+  },
+  {
+   "text": "This is not a terrible solution.",
+   "lexicon_compound": 0.1511,
+   "contextual_valence": 0.1648019552230835,
+   "contextual_nonneutral": 0.675968199968338
+  },
+  {
+   "text": "I am afraid this is wrong.",
+   "lexicon_compound": -0.4767,
+   "contextual_valence": -0.8348729684948921,
+   "contextual_nonneutral": 0.9880753122270107
+  },
+  {
+   "text": "I'm not afraid at all, this is right.",
+   "lexicon_compound": 0.0,
+   "contextual_valence": 0.3596968650817871,
+   "contextual_nonneutral": 0.8351350426673889
+  },
+  {
+   "text": "Wonderful, that worked!",
+   "lexicon_compound": 0.6114,
+   "contextual_valence": 0.9831545944325626,
+   "contextual_nonneutral": 0.994277645368129
+  },
+  {
+   "text": "The answer is 42.",
+   "lexicon_compound": 0.0,
+   "contextual_valence": -0.038555193692445755,
+   "contextual_nonneutral": 0.193057119846344
+  }
+ ]
+}

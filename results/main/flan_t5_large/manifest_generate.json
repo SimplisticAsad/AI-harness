@@ -1,0 +1,124 @@
+{
+  "config": {
+    "experiment": "main",
+    "models": [
+      {
+        "name": "flan_t5_small",
+        "hf_dir": ".cache/hf/flan_t5_small",
+        "spiece": ".cache/spiece.model",
+        "family": "flan-t5",
+        "params_millions": 77.0,
+        "n_per_task": {
+          "factual_qa": 300,
+          "math": 300,
+          "logic": 300,
+          "longform": 300,
+          "instruction": 300,
+          "code": 300
+        },
+        "threads": 2
+      },
+      {
+        "name": "flan_t5_base",
+        "hf_dir": ".cache/hf/flan_t5_base",
+        "spiece": ".cache/spiece.model",
+        "family": "flan-t5",
+        "params_millions": 248.0,
+        "n_per_task": {
+          "factual_qa": 200,
+          "math": 200,
+          "logic": 200,
+          "longform": 200,
+          "instruction": 200,
+          "code": 200
+        },
+        "threads": 2
+      },
+      {
+        "name": "flan_t5_large",
+        "hf_dir": ".cache/hf/flan_t5_large",
+        "spiece": ".cache/spiece.model",
+        "family": "flan-t5",
+        "params_millions": 783.0,
+        "n_per_task": {
+          "factual_qa": 100,
+          "math": 100,
+          "logic": 100,
+          "longform": 100,
+          "instruction": 100,
+          "code": 100
+        },
+        "threads": 3
+      }
+    ],
+    "generation": {
+      "max_new_tokens": {
+        "factual_qa": 48,
+        "math": 96,
+        "logic": 48,
+        "longform": 64,
+        "instruction": 64,
+        "code": 40
+      },
+      "sample_temperature": 0.7,
+      "n_samples": 5,
+      "batch_size": 8,
+      "threads": 4,
+      "seed": 1234
+    },
+    "data": {
+      "n_per_task": {
+        "factual_qa": 300,
+        "math": 300,
+        "logic": 300,
+        "longform": 300,
+        "instruction": 300,
+        "code": 300
+      },
+      "seed": 7,
+      "split_fractions": [
+        0.6,
+        0.2,
+        0.2
+      ]
+    },
+    "results_dir": "results",
+    "bootstrap_resamples": 1000,
+    "stat_seed": 0
+  },
+  "model": {
+    "name": "flan_t5_large",
+    "family": "flan-t5",
+    "params_millions": 783.0,
+    "quantization": "fp32",
+    "framework": "transformers-5.18.0+torch-2.14.1+cu130",
+    "version": "google/flan-t5 T5X checkpoint (gs://t5-data) converted locally"
+  },
+  "hardware": {
+    "cpu_model": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "cpu_count": 4,
+    "ram_gb": 15.7,
+    "gpu": "none",
+    "platform": "Linux-6.18.44-fc-v70-x86_64-with-glibc2.39",
+    "python": "3.11.15"
+  },
+  "seed": 1234,
+  "temperature_sample": 0.7,
+  "greedy_temperature": 0.0,
+  "max_new_tokens": {
+    "factual_qa": 48,
+    "math": 96,
+    "logic": 48,
+    "longform": 64,
+    "instruction": 64,
+    "code": 40
+  },
+  "data_seed": 7,
+  "dataset_versions": {
+    "ARC": "ARC-V1-Feb2018-2 (test)",
+    "GSM8K": "openai/grade-school-math test",
+    "synthetic": "benchmarks/generators.py"
+  },
+  "timestamp_utc": "2026-10-05T16:37:00Z",
+  "git_commit": "0428dfc831c6d9c51d1d2f24e2b22554835d6d27"
+}
