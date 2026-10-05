@@ -1,0 +1,102 @@
+{
+  "config": {
+    "experiment": "main",
+    "models": [
+      {
+        "name": "flan_t5_small",
+        "hf_dir": ".cache/hf/flan_t5_small",
+        "spiece": ".cache/spiece.model",
+        "family": "flan-t5",
+        "params_millions": 77.0,
+        "n_per_task": {
+          "factual_qa": 300,
+          "math": 300,
+          "logic": 300,
+          "longform": 300,
+          "instruction": 300,
+          "code": 300
+        },
+        "threads": 2
+      },
+      {
+        "name": "flan_t5_base",
+        "hf_dir": ".cache/hf/flan_t5_base",
+        "spiece": ".cache/spiece.model",
+        "family": "flan-t5",
+        "params_millions": 248.0,
+        "n_per_task": {
+          "factual_qa": 200,
+          "math": 200,
+          "logic": 200,
+          "longform": 200,
+          "instruction": 200,
+          "code": 200
+        },
+        "threads": 2
+      },
+      {
+        "name": "flan_t5_large",
+        "hf_dir": ".cache/hf/flan_t5_large",
+        "spiece": ".cache/spiece.model",
+        "family": "flan-t5",
+        "params_millions": 783.0,
+        "n_per_task": {
+          "factual_qa": 100,
+          "math": 100,
+          "logic": 100,
+          "longform": 100,
+          "instruction": 100,
+          "code": 100
+        },
+        "threads": 3
+      }
+    ],
+    "generation": {
+      "max_new_tokens": {
+        "factual_qa": 48,
+        "math": 96,
+        "logic": 48,
+        "longform": 64,
+        "instruction": 64,
+        "code": 40
+      },
+      "sample_temperature": 0.7,
+      "n_samples": 5,
+      "batch_size": 8,
+      "threads": 4,
+      "seed": 1234
+    },
+    "data": {
+      "n_per_task": {
+        "factual_qa": 300,
+        "math": 300,
+        "logic": 300,
+        "longform": 300,
+        "instruction": 300,
+        "code": 300
+      },
+      "seed": 7,
+      "split_fractions": [
+        0.6,
+        0.2,
+        0.2
+      ]
+    },
+    "results_dir": "results",
+    "bootstrap_resamples": 1000,
+    "stat_seed": 0
+  },
+  "hardware": {
+    "cpu_model": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "cpu_count": 4,
+    "ram_gb": 15.7,
+    "gpu": "none",
+    "platform": "Linux-6.18.44-fc-v70-x86_64-with-glibc2.39",
+    "python": "3.11.15"
+  },
+  "n_rows": 3600,
+  "bootstrap": 1000,
+  "stat_seed": 0,
+  "timestamp_utc": "2026-10-05T22:04:29Z",
+  "git_commit": "33e143d0de50a2179ced3fe0cd9ef7b5ac336a60"
+}
