@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "esd-harness"
+version = "0.1.0"
+description = "Emotional-Semantic Distress (ESD) harness: affective/epistemic/semantic signals for LLM error detection"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy", "scipy", "scikit-learn", "pandas", "matplotlib", "torch", "transformers", "sentencepiece",
+  "pyyaml", "pydantic>=2", "vaderSentiment", "psutil", "tqdm",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["src", "."]
+include = ["harness*", "benchmarks*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "."]
+testpaths = ["tests"]

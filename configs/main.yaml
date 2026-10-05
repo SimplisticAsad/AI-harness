@@ -1,0 +1,21 @@
+experiment: main
+models:
+  - {name: flan_t5_small, hf_dir: .cache/hf/flan_t5_small, params_millions: 77,  threads: 2,
+     n_per_task: {factual_qa: 300, math: 300, logic: 300, longform: 300, instruction: 300, code: 300}}
+  - {name: flan_t5_base,  hf_dir: .cache/hf/flan_t5_base,  params_millions: 248, threads: 2,
+     n_per_task: {factual_qa: 200, math: 200, logic: 200, longform: 200, instruction: 200, code: 200}}
+  - {name: flan_t5_large, hf_dir: .cache/hf/flan_t5_large, params_millions: 783, threads: 3,
+     n_per_task: {factual_qa: 100, math: 100, logic: 100, longform: 100, instruction: 100, code: 100}}
+generation:
+  max_new_tokens: {factual_qa: 48, math: 96, logic: 48, longform: 64, instruction: 64, code: 40}
+  sample_temperature: 0.7
+  n_samples: 5
+  batch_size: 8
+  threads: 4
+  seed: 1234
+data:
+  n_per_task: {factual_qa: 300, math: 300, logic: 300, longform: 300, instruction: 300, code: 300}
+  seed: 7
+  split_fractions: [0.6, 0.2, 0.2]
+bootstrap_resamples: 1000
+stat_seed: 0
