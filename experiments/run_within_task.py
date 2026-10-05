@@ -30,14 +30,36 @@ def macro(g: pd.DataFrame) -> float:
     return float(np.average(vals, weights=w)) if vals else float("nan")
 
 
+KEEP = {("ESD_core(A+B+C+D+E)", "logreg"), ("ESD_core(A+B+C+D+E)", "fixed_equal_weights"), ("A_affective", "logreg"),
+        ("B_epistemic", "logreg"), ("C_semantic", "logreg"), ("D_token", "logreg"), ("E_candidate", "logreg"),
+        ("L_linguistic", "logreg"), ("ESD_text_only(A+B+C)", "logreg"), ("CTRL_length+difficulty+task", "logreg"),
+        ("ESD_core+CTRL", "logreg"), ("CTRL_task_prior_only", "control"), ("B2_token_logprob_confidence", "baseline"),
+        ("B3_token_entropy", "baseline"), ("B4_self_consistency_disagreement", "baseline"), ("B5_llm_judge_self", "baseline"),
+        ("B5b_llm_judge_independent(flan_t5_large)", "baseline"), ("B6_semantic_disagreement", "baseline"),
+        ("random_scores", "control"), ("A_lexicon_baseline", "logreg")}
+
+
+def macro_np(parts: list[tuple[np.ndarray, np.ndarray]]) -> float:
+    vals, w = [], []
+    for y, s in parts:
+        a = M.auroc(y, s) if (len(np.unique(s)) > 1) else 0.5
+        if not np.isnan(a):
+            vals.append(a); w.append(len(y))
+    return float(np.average(vals, weights=w)) if vals else float("nan")
+
+
 rows = []
 for (model, method, fam), g in pooled.groupby(["model", "method", "family"]):
-    pt = macro(g)
-    groups = [h for _, h in g.groupby("task")]
+    if (method, fam) not in KEEP:
+        continue
+    parts = [(h.y.values, h.score.values) for _, h in g.groupby("task")]
+    pt = macro_np(parts)
     bs = []
-    for _ in range(500):
-        res = pd.concat([h.iloc[rng.integers(0, len(h), len(h))] for h in groups])
-        bs.append(macro(res))
+    for _ in range(300):
+        res = []
+        for y, s in parts:
+            i = rng.integers(0, len(y), len(y)); res.append((y[i], s[i]))
+        bs.append(macro_np(res))
     rows.append({"model": model, "method": method, "family": fam, "within_task_auroc": pt,
                  "lo": np.nanpercentile(bs, 2.5), "hi": np.nanpercentile(bs, 97.5)})
 R = pd.DataFrame(rows)
