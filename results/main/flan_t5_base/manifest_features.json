@@ -1,0 +1,16 @@
+{
+  "extractors": [
+    "affect_lexicon",
+    "affect_contextual",
+    "epistemic_cues",
+    "semantic_text",
+    "token_uncertainty",
+    "candidate_agreement",
+    "linguistic"
+  ],
+  "analysis_encoder": "flan_t5_base encoder (mean-pooled, frozen)",
+  "n_records": 1200,
+  "seconds_per_record": 0.4818139530675004,
+  "timestamp_utc": "2026-10-05T18:22:29Z",
+  "git_commit": "30910d0802086364caf7d59ef54f1b0d4a73a36f"
+}
