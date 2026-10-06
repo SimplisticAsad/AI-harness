@@ -77,7 +77,7 @@ def load(ev: Path, name: str):
     return pd.read_csv(p) if p.exists() else None
 
 
-def verdicts(Mx, H4, LOTO, CM, R, MC) -> list[tuple[str, str, str]]:
+def verdicts(Mx, H4, LOTO, CM, R, MC, W=None) -> list[tuple[str, str, str]]:
     out = []
     pooled = Mx[(Mx.scope == "pooled") & (Mx.family == "logreg")]
 
@@ -91,7 +91,14 @@ def verdicts(Mx, H4, LOTO, CM, R, MC) -> list[tuple[str, str, str]]:
                        ("H2 epistemic signal", "B_epistemic", "epistemic-only AUROC CI lower bound > 0.5 in >= 2/3 of models"),
                        ("H3 semantic consistency", "C_semantic", "semantic-only (text) AUROC CI lower bound > 0.5 in >= 2/3 of models")):
         v, pts = ci_rule(m)
-        out.append((h, v, f"{desc}. {pts}"))
+        extra = ""
+        if W is not None:
+            w = W[(W.method == m) & (W.family == "logreg")]
+            nsw = int((w.lo > 0.5).sum())
+            vw = "SUPPORTED" if nsw >= max(2, int(np.ceil(0.67 * len(w)))) else ("WEAK/INCONCLUSIVE" if (w.within_task_auroc > 0.5).any() and nsw >= 1 else "NOT SUPPORTED")
+            extra = (f" || **within-task verdict (post-hoc, stricter, treated as primary): {vw}** - " +
+                     ", ".join(f"{a}: {b.within_task_auroc:.2f} [{b.lo:.2f}, {b.hi:.2f}]" for a, b in zip(w.model, w.itertuples())))
+        out.append((h, v + (" (pooled rule)" if W is not None else ""), f"{desc}. {pts}{extra}"))
     # H3b semantic disagreement across candidates
     r = Mx[(Mx.scope == "pooled") & (Mx.method == "B6_semantic_disagreement")]
     if len(r):
@@ -145,6 +152,7 @@ def main() -> None:
     R, MC, VQ = load(ev, "repair_policies.csv"), load(ev, "repair_mcnemar.csv"), load(ev, "verifier_quality.csv")
     CI_, PS, ST, PL = (load(ev, n) for n in ("controls_incremental.csv", "controls_partial_spearman.csv", "controls_length_strata.csv", "controls_placebo.csv"))
     ET, OC, VC, WC = (load(ev, n) for n in ("error_type_detectability.csv", "overconfidence.csv", "vs_chance.csv", "wilcoxon_cells.csv"))
+    WT = load(ev, "within_task_auroc.csv")
     ADV, ATK = load(ev, "adversarial_natural_cases.csv"), load(ev, "adversarial_text_attacks.csv")
     AV = json.loads(Path("results/affect/affect_validation.json").read_text()) if Path("results/affect/affect_validation.json").exists() else None
     man = json.loads((root / "flan_t5_small" / "manifest_generate.json").read_text()) if (root / "flan_t5_small" / "manifest_generate.json").exists() else {}
@@ -270,6 +278,15 @@ def main() -> None:
         tbl[f"{m} [{fam or 'logreg'}]"] = row
     w(md(pd.DataFrame(tbl).T.reset_index().rename(columns={"index": "method [learner]"})))
     w("![ablation](figures/09_ablation.png)\n\n![models](figures/08_model_comparison.png)\n\n![roc](figures/03_roc_curves.png)\n\n![pr](figures/04_precision_recall_curves.png)\n")
+    if WT is not None:
+        w("### 9.2b Within-task (macro) AUROC - the confound-free comparison\n")
+        w("**Why this exists.** A scorer that knows only the task and predicts its base error rate reaches the pooled AUROC shown above (`CTRL_task_prior_only`), so pooled AUROC largely measures task identity, and unnormalised baselines (e.g. token entropy) can even fall below 0.5 pooled because token statistics differ by task. "
+          "Within-task AUROC (test-size-weighted mean over tasks; stratified bootstrap) removes this. **This metric was adopted after seeing the task-prior result - it is a post-hoc decision, disclosed here; pooled results are still reported.**\n")
+        order = ["ESD_core(A+B+C+D+E)", "A_affective", "B_epistemic", "C_semantic", "D_token", "E_candidate", "L_linguistic", "ESD_text_only(A+B+C)", "CTRL_length+difficulty+task", "ESD_core+CTRL",
+                 "B2_token_logprob_confidence", "B3_token_entropy", "B4_self_consistency_disagreement", "B5_llm_judge_self", "B5b_llm_judge_independent(flan_t5_large)", "B6_semantic_disagreement", "random_scores"]
+        wt = WT[WT.method.isin(order) & WT.family.isin(["logreg", "baseline", "control"])]
+        wt = wt.assign(cell=lambda d: d.apply(lambda r: f"{r.within_task_auroc:.2f} [{r.lo:.2f}, {r.hi:.2f}]", axis=1)).pivot_table(index="method", columns="model", values="cell", aggfunc="first").reindex(order).reset_index()
+        w(md(wt) + "\n\n![within-task](figures/08c_within_task_auroc.png)\n")
     w("### 9.3 Per-task AUROC of ESD core (logreg) and the strongest simple baselines\n")
     pt = Mx[(Mx.scope != "pooled") & (((Mx.method == ESD) & (Mx.family == "logreg")) | Mx.method.isin(["B3_token_entropy", "B4_self_consistency_disagreement", "B5_llm_judge_self"]))]
     pt = pt.assign(m=pt.method.str.slice(0, 22)).assign(cell=lambda d: d.apply(ci, axis=1)).pivot_table(index=["model", "scope"], columns="m", values="cell", aggfunc="first").reset_index()
@@ -343,7 +360,7 @@ def main() -> None:
       "**permutation test vs chance** for AUROC>0.5; **exact McNemar** for paired accepted-error outcomes; **Wilcoxon signed-rank** across (model, task) cells; **Holm** step-down correction within each family of tests; effect sizes as ΔAUROC (and Cohen's h available in `stattests.py`). "
       "Class balance matters for AUPRC, so base error rate is shown beside it.\n")
     w("**VERDICT RULES (fixed before results):** SUPPORTED if the stated CI criterion holds in >= 2/3 of models (or all cells where stated); WEAK/INCONCLUSIVE if the point estimate beats chance but the criterion fails; NOT SUPPORTED otherwise.\n")
-    vv = verdicts(Mx, H4, LOTO, CM, R, MC)
+    vv = verdicts(Mx, H4, LOTO, CM, R, MC, WT)
     w("| hypothesis | verdict | evidence |\n|---|---|---|\n" + "\n".join(f"| {h} | **{v}** | {e} |" for h, v, e in vv) + "\n")
     # ------------------------------------------------------------------ 14-17
     interp = Path("reports/interpretation.md")

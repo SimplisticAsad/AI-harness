@@ -69,7 +69,8 @@ def natural_cases(d: pd.DataFrame) -> dict[str, pd.Series]:
 def part1(df: pd.DataFrame, P: pd.DataFrame, models: list[str]) -> pd.DataFrame:
     rows = []
     for model in models:
-        d = df[(df.model == model) & (df.split == "test")].set_index("id")
+        full = df[df.model == model]  # train rows are needed for the feature thresholds in natural_cases
+        d = full[full.split == "test"].set_index("id")
         scorers = {"ESD_core (logreg)": (AN.ESD, "logreg"), "B3 token entropy": ("B3_token_entropy", "baseline"),
                    "B5 LLM judge (self)": ("B5_llm_judge_self", "baseline"),
                    "B4 self-consistency": ("B4_self_consistency_disagreement", "baseline"),
@@ -80,9 +81,10 @@ def part1(df: pd.DataFrame, P: pd.DataFrame, models: list[str]) -> pd.DataFrame:
             if g.empty:
                 continue
             flags[name] = pd.Series(g.score.values >= np.quantile(g.score.values, 1 - BUDGET), index=g.index)
-        cases = natural_cases(d.reset_index())
+        cases = natural_cases(full.reset_index(drop=True))
+        in_test = (full.split == "test").values
         for case, mask in cases.items():
-            ids = d.index[mask.values]
+            ids = pd.Index(full.id.values[mask.values & in_test])
             for sname, fl in flags.items():
                 ids2 = ids.intersection(fl.index)
                 k = int(fl.loc[ids2].sum())

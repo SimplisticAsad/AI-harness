@@ -159,6 +159,24 @@ def fig_model_comparison(Mx, out):
     save(fig, "08_model_comparison.png", out)
 
 
+def fig_within_task(ev, out):
+    f = ev / "within_task_auroc.csv"
+    if not f.exists():
+        skipped.append("08c_within_task"); return
+    W = pd.read_csv(f)
+    sel = [(ESD, "logreg", "ESD core"), ("A_affective", "logreg", "affect"), ("B_epistemic", "logreg", "epistemic"), ("C_semantic", "logreg", "semantic"),
+           ("D_token", "logreg", "token"), ("E_candidate", "logreg", "candidates"), ("B5_llm_judge_self", "baseline", "judge (self)"),
+           ("B4_self_consistency_disagreement", "baseline", "self-consistency"), ("CTRL_length+difficulty+task", "logreg", "length+diff+task ctrl")]
+    models = list(W.model.unique()); fig, ax = plt.subplots(figsize=(8, 3.6)); w = 0.8 / len(sel)
+    for j, (m, fam, lab) in enumerate(sel):
+        r = [W[(W.model == mo) & (W.method == m) & (W.family == fam)] for mo in models]
+        v = np.array([x.within_task_auroc.iloc[0] if len(x) else np.nan for x in r]); lo = np.array([x.lo.iloc[0] if len(x) else np.nan for x in r]); hi = np.array([x.hi.iloc[0] if len(x) else np.nan for x in r])
+        ax.bar(np.arange(len(models)) + j * w, v, w, color=OI[j % len(OI)], label=lab, yerr=[v - lo, hi - v], capsize=1.2)
+    ax.axhline(0.5, color="k", ls=":", lw=0.8); ax.set_xticks(np.arange(len(models)) + 0.4 - w / 2); ax.set_xticklabels(models)
+    ax.set(ylabel="within-task macro AUROC (95% CI)", ylim=(0.3, 1.0), title="Task-confound-free comparison (post-hoc headline metric)"); ax.legend(frameon=False, fontsize=6, ncol=3)
+    save(fig, "08c_within_task_auroc.png", out)
+
+
 def fig_task_heatmap(Mx, out):
     d = Mx[(Mx.method == ESD) & (Mx.family == "logreg")].pivot(index="model", columns="scope", values="auroc")
     fig, ax = plt.subplots(figsize=(7, 2.4))
@@ -296,7 +314,7 @@ def main() -> None:
     R = pd.read_csv(ev / "repair_policies.csv") if (ev / "repair_policies.csv").exists() else None
     fig_distribution(P, out); fig_dist_vs_error(P, out); fig_curves(P, out, "roc"); fig_curves(P, out, "pr")
     fig_calibration(P, out); fig_risk_coverage(P, out); fig_error_types(frame, out); fig_model_comparison(Mx, out)
-    fig_task_heatmap(Mx, out); fig_ablation(Mx, out); fig_repair(R, out); fig_latency(Mx, S, out)
+    fig_within_task(ev, out); fig_task_heatmap(Mx, out); fig_ablation(Mx, out); fig_repair(R, out); fig_latency(Mx, S, out)
     fig_confusion(P, out); fig_generalization(ev, out); fig_adversarial(ev, out)
     json.dump({"skipped": skipped}, open(out / "_skipped.json", "w"))
     print("figures:", sorted(p.name for p in out.glob("*.png")), "skipped:", skipped)

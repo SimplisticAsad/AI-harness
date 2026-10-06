@@ -14,11 +14,11 @@ the report states exactly what did and did not work. See `RESEARCH_PLAN.md` (wri
 src/harness/  core (types, config, io, hardware, pipeline) · models (T5X->HF converter, Flan-T5 backend, mock)
               signals · affect · epistemic · semantic · uncertainty · scoring · evaluation · verification · routing
 benchmarks/   task generators + deterministic graders (ARC, GSM8K, synthetic logic/ordering/instruction/code)
-experiments/  run_generate · run_judge · fit_affect · run_features · run_eval · run_adversarial · run_repair · make_figures · make_report
+experiments/  run_generate · run_judge · fit_affect · run_features · run_eval · run_within_task · run_adversarial · run_repair · make_figures · make_report
 configs/      main.yaml (reported run) · debug.yaml
 tests/        unit + integration tests (24)
 results/      raw generations (token traces), features, judge scores, predictions, metrics, summary.csv, manifests
-reports/      final_report.md, figures/
+reports/      final_report.md (PDF not produced: no working renderer in the sandbox), figures/
 ```
 
 ## Reproduce (exact commands)
